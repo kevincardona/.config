@@ -2,18 +2,23 @@ local options = { noremap = true }
 vim.keymap.set("i", "jj", "<Esc>", options)
 
 -- project navigation
-vim.api.nvim_set_keymap('n', '<leader>e', ":NvimTreeToggle<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>e', ":NvimTreeFindFileToggle!<CR>", {noremap = true, silent = true})
 
 -- file navigation
-vim.api.nvim_set_keymap('n', '<leader>ho', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>hn', ':lua require("harpoon.ui").nav_next()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>hb', ':lua require("harpoon.ui").nav_prev()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>ha', ':lua require("harpoon.mark").add_file()<CR>', {noremap = true, silent = true})
+local harpoon = require("harpoon")
+harpoon:setup()
+vim.keymap.set("n", "<leader>ha", function() harpoon:list():append() end)
+vim.keymap.set("n", "<leader>ho", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+-- vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end)
+-- vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end)
 vim.api.nvim_set_keymap('n', '<leader>nn', ':bnext<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>bb', ':bprev<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>pp', ':bprev<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>o', ':Telescope buffers<CR>', {noremap = true, silent = true})
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+
+-- preview file
+vim.api.nvim_set_keymap('n', '<leader>md', ':MarkdownPreviewToggle<CR>', {noremap = true, silent = true})
 
 -- window navigation
 vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', {noremap = true, silent = true})
@@ -26,9 +31,6 @@ vim.api.nvim_set_keymap('n', 'd', '"_d', {noremap = true})
 vim.api.nvim_set_keymap('v', 'd', '"_d', {noremap = true})
 vim.api.nvim_set_keymap('n', 'x', '"_x', {noremap = true})
 vim.api.nvim_set_keymap('n', 'X', '"_X', {noremap = true})
-
--- switch mode to ex
-vim.api.nvim_set_keymap('n', '<leader>pv', ':Ex<CR>', {noremap = true, silent = true})
 
 -- for 'change inside' or 'delete inside' operations
 local ci_commands = { 'ci"', "ci'", "ci(", "ci)", "ci[", "ci]", "ci{", "ci}", "ci`", "di'", 'di"', "di(", "di)", "di[", "di]", "di{", "di}", "di`" }

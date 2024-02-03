@@ -16,6 +16,7 @@ and some random things to go along with it while we're at it:
 * [tmux](https://github.com/tmux/tmux)
 * [tpm](https://github.com/tmux-plugins/tpm)
 * [tmuxinator](https://github.com/tmuxinator/tmuxinator)
+* [trash](https://formulae.brew.sh/formula/trash)
 
 <h1>setup:</h1>
 ~/.zshrc - add `source ~/.config/zsh/.zshrc`<br/>

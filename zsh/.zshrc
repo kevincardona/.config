@@ -5,8 +5,17 @@ export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export PATH=/opt/homebrew/bin:$PATH
 
-ZSH_THEME="robbyrussell"
+# robbyrussell, af-magic
+ZSH_THEME="af-magic"
 DISABLE_UPDATE_PROMPT=true
+
+# Custom Theme
+# PROMPT='%{$fg[green]%}%~%{$fg_bold[blue]%}$(git_prompt_info)%{$reset_color%} '
+#
+# ZSH_THEME_GIT_PROMPT_PREFIX="("
+# ZSH_THEME_GIT_PROMPT_SUFFIX=")"
+# ZSH_THEME_GIT_PROMPT_DIRTY=" ✗"
+# ZSH_THEME_GIT_PROMPT_CLEAN=" ✔"
 
 # plugins
 plugins=(
@@ -14,6 +23,7 @@ plugins=(
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	rvm
+	emoji
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -25,9 +35,11 @@ alias mux="tmuxinator"
 alias ms="mux start"
 alias mn="mux new"
 alias mf='tmuxinator list | sed 1d | awk '\''{for(i=1;i<=NF;i++) if($i ~ /^[[:alnum:]_\-]+$/) print $i}'\'' | fzf --height 40% --border rounded | xargs tmuxinator start'
+alias ta='tmux a'
 alias vsc="cd ~/.config/scripts && python vsc.py"
 alias log-sf-test='stern --context sf-test'
 alias log-au-test='stern --context au-test'
+alias del='trash'
 
 # functions
 # mf() {
