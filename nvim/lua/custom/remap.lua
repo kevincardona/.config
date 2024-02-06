@@ -9,8 +9,6 @@ local harpoon = require("harpoon")
 harpoon:setup()
 vim.keymap.set("n", "<leader>ha", function() harpoon:list():append() end)
 vim.keymap.set("n", "<leader>ho", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
--- vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end)
--- vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end)
 vim.api.nvim_set_keymap('n', '<leader>nn', ':bnext<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>bb', ':bprev<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>pp', ':bprev<CR>', {noremap = true, silent = true})
@@ -25,6 +23,10 @@ vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', {noremap = true, silent = tr
 vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', {noremap = true, silent = true})
+
+-- autocomplete
+vim.api.nvim_set_keymap('n', '<leader>ac', ':Copilot panel<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>af', ':Format<CR>', {noremap = true, silent = true})
 
 -- prevent yank on delete
 vim.api.nvim_set_keymap('n', 'd', '"_d', {noremap = true})

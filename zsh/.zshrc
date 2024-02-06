@@ -46,6 +46,25 @@ alias del='trash'
 #   local initial_query="$1"
 #   tmuxinator list | sed 1d | awk '{for(i=1;i<=NF;i++) if($i ~ /^[[:alnum:]_\-]+$/) print $i}' | fzf --height 40% --border rounded --query="$initial_query" | xargs tmuxinator start
 # }
+ccd() {
+    local selected=$(find ~ ~/projects ~/.config ~/work ~/work/valert ~/work/telekit ~/work/racc ~/personal -mindepth 1 -maxdepth 1 -type d | fzf)
+
+    if [[ -z $selected ]]; then
+        echo "No directory selected."
+        return 1
+    fi
+
+    # Change to the selected directory
+    cd "$selected" || return
+
+    # If inside tmux, update the current pane's directory
+    if [[ -n $TMUX ]]; then
+        tmux send-keys "cd $selected" C-m
+    fi
+}
+
+
+
 tmuxfzf() {
   local initial_query="$1"
   # Get the list of projects, excluding the first line
