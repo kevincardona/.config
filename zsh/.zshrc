@@ -40,6 +40,7 @@ alias vsc="cd ~/.config/scripts && python vsc.py"
 alias log-sf-test='stern --context sf-test'
 alias log-au-test='stern --context au-test'
 alias del='trash'
+alias spt='spotify_player'
 
 # functions
 # mf() {
