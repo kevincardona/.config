@@ -30,6 +30,7 @@ source $ZSH/oh-my-zsh.sh
 
 # aliases
 alias darkmode="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
+alias python="python3"
 alias vim="nvim"
 alias mux="tmuxinator"
 alias ms="mux start"
@@ -41,6 +42,7 @@ alias log-sf-test='stern --context sf-test'
 alias log-au-test='stern --context au-test'
 alias del='trash'
 alias spt='spotify_player'
+alias bers="bundle exec rails s"
 
 # functions
 # mf() {
@@ -64,6 +66,19 @@ ccd() {
     fi
 }
 
+menubar() {
+    currentState=$(defaults read NSGlobalDomain _HIHideMenuBar)
+    if [ "$currentState" -eq 1 ]; then
+        defaults write NSGlobalDomain _HIHideMenuBar -bool false
+    else
+        defaults write NSGlobalDomain _HIHideMenuBar -bool true
+    fi
+    killall Finder
+}
+
+gcobr() {
+    git checkout -b $1/RACCWEB-$2
+}
 
 
 tmuxfzf() {
@@ -100,17 +115,24 @@ zstyle ':omz:plugins:rvm' lazy yes
 export PATH="$PATH:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-lazy_nvm() {
-    unset -f nvm node npm npx
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-    nvm "$@"
-}
-nvm() { lazy_nvm; }
-node() { lazy_nvm; }
-npm() { lazy_nvm; }
-npx() { lazy_nvm; }
+export PATH=$(pyenv root)/shims:$PATH
+
+# NVM Configuration
+# lazy_nvm() {
+#     unset -f nvm node npm npx
+#     export NVM_DIR="$HOME/.nvm"
+#     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+#     nvm "$@"
+#     export PATH="`yarn global bin`:$PATH"
+# }
+# nvm() { lazy_nvm; }
+# node() { lazy_nvm; }
+# npm() { lazy_nvm; }
+# npx() { lazy_nvm; }
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 # alias node='unalias node ; unalias npm ; nvm use default ; node $@'
@@ -121,6 +143,8 @@ npx() { lazy_nvm; }
 [ -s "/Users/kcardona/.bun/_bun" ] && source "/Users/kcardona/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+export JAVA_HOME=/opt/homebrew/opt/openjdk@11
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/kcardona/.rd/bin:$PATH"

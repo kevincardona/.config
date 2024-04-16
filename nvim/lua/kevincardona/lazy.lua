@@ -1,4 +1,11 @@
 require("lazy").setup({
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+    'petertriho/nvim-scrollbar',
     'nvim-treesitter/nvim-treesitter',
     'nvim-tree/nvim-tree.lua',
     'tpope/vim-fugitive',
@@ -10,6 +17,7 @@ require("lazy").setup({
     'christoomey/vim-tmux-navigator',
     'folke/trouble.nvim',
     'eandrju/cellular-automaton.nvim',
+    'iamcco/markdown-preview.nvim',
     'folke/which-key.nvim',
     {
         'navarasu/onedark.nvim',
@@ -99,9 +107,9 @@ require("lazy").setup({
                 map('n', '<leader>hS', gs.stage_buffer, { desc = 'git Stage buffer' })
                 map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
                 map('n', '<leader>hR', gs.reset_buffer, { desc = 'git Reset buffer' })
-                map('n', '<leader>hp', gs.preview_hunk, { desc = 'preview git hunk' })
+                map('n', '<leader>hv', gs.preview_hunk, { desc = 'view git hunk' })
                 map('n', '<leader>hb', function()
-                    gs.blame_line { full = false }
+                    gs.blame_line { full = true }
                 end, { desc = 'git blame line' })
                 map('n', '<leader>hd', gs.diffthis, { desc = 'git diff against index' })
                 map('n', '<leader>hD', function()
@@ -120,11 +128,14 @@ require("lazy").setup({
     {
         'romgrk/barbar.nvim',
         dependencies = {
-            'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+            'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
             'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
         },
         init = function() vim.g.barbar_auto_setup = false end,
         opts = {
+            icons = {
+                buffer_number = true,
+            }
             -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
             -- animation = true,
             -- insert_at_start = true,
