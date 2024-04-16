@@ -130,8 +130,9 @@ export PATH=$(pyenv root)/shims:$PATH
 # node() { lazy_nvm; }
 # npm() { lazy_nvm; }
 # npx() { lazy_nvm; }
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
@@ -145,6 +146,9 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 export JAVA_HOME=/opt/homebrew/opt/openjdk@11
+export PATH=$HOME/development/sdks/flutter/bin:$PATH 
+
+export PATH=$HOME/.gem/bin:$PATH
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/kcardona/.rd/bin:$PATH"
