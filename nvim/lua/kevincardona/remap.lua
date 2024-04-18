@@ -1,6 +1,7 @@
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 vim.keymap.set("i", "jj", "<Esc>", opts)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- lsp
 map('n', '<leader>t', ":TroubleToggle<CR>", { noremap = true, silent = true })
@@ -27,7 +28,6 @@ map('n', '<leader>j', ':BufferPrevious<CR>', { noremap = true, silent = true })
 map('n', '<leader>h', ':BufferPrevious<CR>', { noremap = true, silent = true })
 map('n', '<leader>bd', ':bd<CR>', { noremap = true, silent = true })
 map('n', '<leader>o', ':Telescope buffers<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
 map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
