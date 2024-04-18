@@ -7,6 +7,14 @@ return {
             local function my_on_attach(bufnr)
                 local api = require "nvim-tree.api"
 
+                vim.keymap.set('n', '<LeftRelease>', function()
+                    local node = api.tree.get_node_under_cursor()
+
+                    if node.nodes ~= nil then
+                        api.node.open.edit()
+                    end
+                end, {})
+
                 local function opts(desc)
                     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
                 end
@@ -15,11 +23,9 @@ return {
 
                 -- custom mappings
                 vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
-                vim.keymap.set('n', '<C-t>', api.tree.find_file)
             end
 
             require("nvim-tree").setup({
-                on_attach = my_on_attach,
                 sort = {
                     sorter = "case_sensitive",
                 },
@@ -40,4 +46,3 @@ return {
         end
     }
 }
-

@@ -1,15 +1,3 @@
--- Do I want flutter tools?
--- maybe
--- {
---     'akinsho/flutter-tools.nvim',
---     lazy = false,
---     dependencies = {
---         'nvim-lua/plenary.nvim',
---         'stevearc/dressing.nvim', -- optional for vim.ui.select
---     },
---     config = true,
--- },
-
 return {
     'github/copilot.vim',
     {
@@ -100,5 +88,15 @@ return {
                 },
             })
         end
-    }
+    },
+    {
+        'akinsho/flutter-tools.nvim',
+        lazy = false,
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'stevearc/dressing.nvim', -- optional for vim.ui.select
+        },
+        config = true,
+    },
+
 }
