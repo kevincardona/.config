@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~ ~/projects ~/.config ~/work ~/work/valert ~/work/telekit ~/work/racc ~/personal -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~ ~/projects ~/.config ~/work ~/work/valert ~/work/telekit ~/work/racc ~/personal ~/personal/rust-learn -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
