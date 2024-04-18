@@ -33,6 +33,12 @@ map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
 map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
 map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
 
+-- Copy the absolute path of the current file to the clipboard
+map('n', '<leader>fa', ":let @+=expand('%:p')<CR>", { noremap = true, silent = true })
+
+-- Copy the relative path of the current file to the clipboard
+map('n', '<leader>fr', ':let @+=expand("%")<CR>', { noremap = true, silent = true })
+
 -- preview file
 map('n', '<leader>md', ':MarkdownPreviewToggle<CR>', { noremap = true, silent = true })
 
