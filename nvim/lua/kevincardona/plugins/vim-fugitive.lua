@@ -7,10 +7,10 @@ return {
     },
     config = function()
         vim.g.fugitive_gitlab_domains = {
-            ["gitlab.vailsys.com"] = "gitlab.com",
+            ["gitlab.vailsys.com"] = "gitlab.vailsys.com",
         }
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-        vim.keymap.set("n", "<leader>gb", ":GBrowse<CR>", opts);
+        vim.keymap.set("n", "<leader>gb", ":GBrowse<CR>");
 
         local kevin_fugitive = vim.api.nvim_create_augroup("kevin_fugitive", {})
         local autocmd = vim.api.nvim_create_autocmd

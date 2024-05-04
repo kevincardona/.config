@@ -31,7 +31,17 @@ return {
                     "lua_ls",
                     "rust_analyzer",
                     "gopls",
+                    "solargraph",
+                    "tsserver",
+                    "pyright",
+                    "bashls",
+                    "dockerls",
+                    "jsonls",
+                    "html",
+                    "yamlls",
+                    "vimls",
                 },
+                automatic_installation = true,
                 handlers = {
                     function(server_name) -- default handler (optional)
                         require("lspconfig")[server_name].setup {

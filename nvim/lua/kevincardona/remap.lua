@@ -1,64 +1,52 @@
-local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 vim.keymap.set("i", "jj", "<Esc>", opts)
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- lsp
-map('n', '<leader>t', ":TroubleToggle<CR>", { noremap = true, silent = true })
-map('n', '<leader>tq', ":TroubleToggle quickfix<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>t', ":TroubleToggle<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tq', ":TroubleToggle quickfix<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>tn', function() require("trouble").next({ skip_groups = true, jump = true }) end)
 vim.keymap.set('n', '<leader>tp', function() require("trouble").previous({ skip_groups = true, jump = true }) end)
 
 -- project navigation
-map('n', '<leader>e', ":NvimTreeFindFileToggle!<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>e', ":NvimTreeFindFileToggle!<CR>", { noremap = true, silent = true })
 
--- file navigation
-local harpoon = require("harpoon")
-harpoon:setup()
-vim.keymap.set("n", "<leader>ha", function() harpoon:list():append() end)
-vim.keymap.set("n", "<leader>ho", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end)
-map('n', '<leader>nn', ':BufferNext<CR>', { noremap = true, silent = true })
-map('n', '<leader>k', ':BufferNext<CR>', { noremap = true, silent = true })
-map('n', '<leader>l', ':BufferNext<CR>', { noremap = true, silent = true })
-map('n', '<leader>bb', ':BufferPrevious<CR>', { noremap = true, silent = true })
-map('n', '<leader>pp', ':BufferPrevious<CR>', { noremap = true, silent = true })
-map('n', '<leader>j', ':BufferPrevious<CR>', { noremap = true, silent = true })
-map('n', '<leader>h', ':BufferPrevious<CR>', { noremap = true, silent = true })
-map('n', '<leader>bd', ':bd<CR>', { noremap = true, silent = true })
-map('n', '<leader>o', ':Telescope buffers<CR>', { noremap = true, silent = true })
-map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
-map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+-- git
+vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>lc', ':LazyGitFilterCurrentFile<CR>', { noremap = true, silent = true })
 
--- Copy the absolute path of the current file to the clipboard and show a message
-map('n', '<leader>fa', ':let @+=expand("%:p")<CR>:echo "Copied absolute path: " . expand("%:p")<CR>', { noremap = true, silent = false })
+-- copy the absolute path of the current file to the clipboard and show a message
+vim.keymap.set('n', '<leader>fa', ':let @+=expand("%:p")<CR>:echo "Copied absolute path: " . expand("%:p")<CR>',
+    { noremap = true, silent = false })
 
--- Copy the relative path of the current file to the clipboard and show a message
-map('n', '<leader>fr', ':let @+=expand("%")<CR>:echo "Copied relative path: " . expand("%")<CR>', { noremap = true, silent = false })
+-- copy the relative path of the current file to the clipboard and show a message
+vim.keymap.set('n', '<leader>fr', ':let @+=expand("%")<CR>:echo "Copied relative path: " . expand("%")<CR>',
+    { noremap = true, silent = false })
 
--- preview file
-map('n', '<leader>md', ':MarkdownPreviewToggle<CR>', { noremap = true, silent = true })
+-- window resize
+vim.api.nvim_set_keymap('n', '<leader><Up>', ':resize +10<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><Down>', ':resize -10<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><Left>', ':vertical resize +20<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><Right>', ':vertical resize -20<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>ff', '<cmd>lua require("spectre").toggle()<CR>', {
+    desc = "Toggle Spectre"
+})
 
--- window navigation
--- map('n', '<leader>h', '<C-w>h', { noremap = true, silent = true })
--- map('n', '<leader>j', '<C-w>j', { noremap = true, silent = true })
--- map('n', '<leader>k', '<C-w>k', { noremap = true, silent = true })
--- map('n', '<leader>l', '<C-w>l', { noremap = true, silent = true })
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- autocomplete
-map('n', '<leader>ac', ':Copilot panel<CR>', { noremap = true, silent = true })
-map('n', '<leader>af', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>ac', ':Copilot panel<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>af', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
 
 -- prevent yank on delete
-map('n', 'd', '"_d', { noremap = true })
-map('v', 'd', '"_d', { noremap = true })
-map('n', 'x', '"_x', { noremap = true })
-map('n', 'X', '"_X', { noremap = true })
+vim.keymap.set('n', 'd', '"_d', { noremap = true })
+vim.keymap.set('v', 'd', '"_d', { noremap = true })
+vim.keymap.set('n', 'x', '"_x', { noremap = true })
+vim.keymap.set('n', 'X', '"_X', { noremap = true })
 
--- for 'change inside' or 'delete inside' operations
+-- prevent yank on change, delete, and x
 local ci_commands = { 'ci"', "ci'", "ci(", "ci)", "ciw", "cw", "cil", "ci[", "ci]", "ci{", "ci}", "ci`", "di'", 'di"',
     "di(", "di)", "di[",
     "di]", "di{", "di}", "di`", "x" }
@@ -66,7 +54,23 @@ for _, map in ipairs(ci_commands) do
     vim.api.nvim_set_keymap('n', map, '"_' .. map, { noremap = true })
 end
 
--- fun --
-map('n', '<leader>gu', ':CellularAutomaton make_it_rain<CR>', { noremap = true, silent = true })
+-- setup lsp keymaps only when an lsp client attaches to a buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(e)
+    local opts = { buffer = e.buf }
+    vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>gu", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "gu", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "d[", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "d]", vim.diagnostic.goto_next, opts)
+  end
+})
 
 return {}

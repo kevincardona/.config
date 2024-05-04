@@ -28,6 +28,11 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# keybindings
+bindkey -e
+bindkey '\e\e[C' forward-word
+bindkey '\e\e[D' backward-word
+
 # aliases
 alias darkmode="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
 alias python="python3"
@@ -43,6 +48,8 @@ alias log-au-test='stern --context au-test'
 alias del='trash'
 alias spt='spotify_player'
 alias bers="bundle exec rails s"
+alias lg="lazygit"
+alias dl="trash"
 
 # functions
 # mf() {

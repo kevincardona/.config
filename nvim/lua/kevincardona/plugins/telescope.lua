@@ -27,6 +27,20 @@ local function live_grep_git_root()
     end
 end
 
+local function telescope_current_buffer_fuzzy_find()
+    require('telescope.builtin').current_buffer_fuzzy_find({
+        prompt_title = '< Search in Current Buffer >',
+        layout_strategy = 'vertical',
+        layout_config = {
+            vertical = {
+                mirror = true,
+                width = 0.8,
+                height = 0.4,
+            }
+        }
+    })
+end
+
 local function telescope_live_grep_open_files()
     require('telescope.builtin').live_grep {
         grep_open_files = true,
@@ -47,11 +61,34 @@ return {
         }
     },
     config = function()
-        require('telescope').setup({})
+        -- require('telescope').setup({})
+        require('telescope').setup({
+            defaults = {
+                layout_strategy = 'bottom_pane',  -- using horizontal layout
+                layout_config = {
+                    horizontal = {
+                        mirror = true,  -- this will place the prompt at the bottom
+                        preview_width = 0.6,  -- adjust preview width as necessary
+                    },
+                    width = 0.8,  -- width of Telescope window (80% of the available screen)
+                    height = 0.7,  -- height of Telescope window (40% of the available screen)
+                    prompt_position = "bottom",  -- position the prompt at the bottom of the Telescope window
+                },
+                mappings = {
+                    i = {
+                        ["<C-Down>"] = require('telescope.actions').cycle_history_next,
+                        ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
+                    },
+                },
+                -- other default configurations can be added here
+            }
+        })
         vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
         vim.keymap.set('n', '<leader>so', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
+        vim.keymap.set('n', '<leader>o', ':Telescope buffers<CR>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<leader>sb', telescope_current_buffer_fuzzy_find, { desc = '[S]earch in Current [B]uffer' })
         vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
-        vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+        -- vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
         vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
         vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
         vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })

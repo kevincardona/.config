@@ -7,14 +7,6 @@ return {
             local function my_on_attach(bufnr)
                 local api = require "nvim-tree.api"
 
-                vim.keymap.set('n', '<LeftRelease>', function()
-                    local node = api.tree.get_node_under_cursor()
-
-                    if node.nodes ~= nil then
-                        api.node.open.edit()
-                    end
-                end, {})
-
                 local function opts(desc)
                     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
                 end
@@ -26,6 +18,7 @@ return {
             end
 
             require("nvim-tree").setup({
+                on_attach = my_on_attach,
                 sort = {
                     sorter = "case_sensitive",
                 },
@@ -46,7 +39,10 @@ return {
                 update_focused_file = {
                     enable = true,
                     update_cwd = true,
-                }
+                },
+                actions = {
+                    change_dir = { enable = false }
+                },
             })
         end
     }
