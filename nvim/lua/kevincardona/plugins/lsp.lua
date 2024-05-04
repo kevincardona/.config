@@ -27,21 +27,7 @@ return {
             require("fidget").setup({})
             require("mason").setup()
             require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "lua_ls",
-                    "rust_analyzer",
-                    "gopls",
-                    "solargraph",
-                    "tsserver",
-                    "pyright",
-                    "bashls",
-                    "dockerls",
-                    "jsonls",
-                    "html",
-                    "yamlls",
-                    "vimls",
-                },
-                automatic_installation = true,
+                automatic_installation = { exclude = { "typos_lsp" } },
                 handlers = {
                     function(server_name) -- default handler (optional)
                         require("lspconfig")[server_name].setup {

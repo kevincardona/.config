@@ -1,12 +1,11 @@
-.DS_Store
-fish
-github-copilot
-iterm2
-karabiner/automatic_backups
-scripts
-tmuxinator
-yarn
-spotify-player
-jgit
-zed
-flutter
+# Ignore everything
+*
+
+# But not these files and directories
+!bin/scripts/**/*
+!iterm2/**/*
+!karabiner/**/*
+!nvim/**/*
+!tmux/**/*
+!zsh/**/*
+!README.md

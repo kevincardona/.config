@@ -64,15 +64,15 @@ return {
         -- require('telescope').setup({})
         require('telescope').setup({
             defaults = {
-                layout_strategy = 'bottom_pane',  -- using horizontal layout
+                layout_strategy = 'bottom_pane', -- using horizontal layout
                 layout_config = {
                     horizontal = {
-                        mirror = true,  -- this will place the prompt at the bottom
-                        preview_width = 0.6,  -- adjust preview width as necessary
+                        mirror = true,          -- this will place the prompt at the bottom
+                        preview_width = 0.6,    -- adjust preview width as necessary
                     },
-                    width = 0.8,  -- width of Telescope window (80% of the available screen)
-                    height = 0.7,  -- height of Telescope window (40% of the available screen)
-                    prompt_position = "bottom",  -- position the prompt at the bottom of the Telescope window
+                    width = 0.8,                -- width of Telescope window (80% of the available screen)
+                    height = 0.7,               -- height of Telescope window (40% of the available screen)
+                    prompt_position = "bottom", -- position the prompt at the bottom of the Telescope window
                 },
                 mappings = {
                     i = {
@@ -80,6 +80,8 @@ return {
                         ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
                     },
                 },
+                file_ignore_patterns = {},
+                find_command = { 'rg', '--files', '--hidden', '--glob', '!.git/*' }
                 -- other default configurations can be added here
             }
         })
