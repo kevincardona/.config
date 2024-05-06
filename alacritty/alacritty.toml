@@ -10,10 +10,11 @@ size = 14
 
 [keyboard]
 bindings = [
-  { key = "W", mods = "Command", chars = "\u001b :bd\r" },
   { key = "Return", mods = "Command", chars = "" },
-  { key = "C", mods = "Command", chars = "y" },
+  { key = "N", mods = "Command", chars = "" },
   { key = "T", mods = "Command", chars = "" },
+  { key = "W", mods = "Command", chars = "\u001b :bd\r" },
+  { key = "C", mods = "Command", chars = "y" },
   { key = "Slash", mods = "Command", chars = "gcc" },
   { key = "a", mods = "Command", chars = "\u001bggVGG" },
   { key = "F", mods = "Command", chars = "\u001b sb" },
@@ -27,4 +28,14 @@ bindings = [
 [shell]
 program = "/bin/zsh"
 args = ["-l", "-c", "/opt/homebrew/bin/tmux attach || /opt/homebrew/bin/tmux"]
+
+[hints]
+[[hints.enabled]]
+regex = '''(mailto:|gemini:|gopher:|https?:\/\/|http?:\/\/|news:|file:|git:|ssh:|ftp:)[^\s]+'''
+command = "open"
+post_processing = true
+
+[hints.enabled.mouse]
+enabled = true
+mods = "Option"
 

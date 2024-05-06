@@ -27,7 +27,7 @@ return {
             require("fidget").setup({})
             require("mason").setup()
             require("mason-lspconfig").setup({
-                automatic_installation = { exclude = { "typos_lsp" } },
+                automatic_installation = { exclude = { "typos_lsp, solargraph" } },
                 handlers = {
                     function(server_name) -- default handler (optional)
                         require("lspconfig")[server_name].setup {
