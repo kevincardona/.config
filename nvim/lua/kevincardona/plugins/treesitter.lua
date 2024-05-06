@@ -1,4 +1,4 @@
--- builds syntax tree for better syntax highlighting 
+-- builds syntax tree for better syntax highlighting
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
@@ -7,7 +7,8 @@ return {
       -- A list of parser names, or "all"
       ensure_installed = {
         "vimdoc", "javascript", "typescript", "c", "lua", "rust",
-        "jsdoc", "bash",
+        "jsdoc", "bash", "gdscript", "json", "jsonc", "html", "css",
+        "yaml", "ruby"
       },
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -45,4 +46,3 @@ return {
     vim.treesitter.language.register("templ", "templ")
   end
 }
-

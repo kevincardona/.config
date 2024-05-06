@@ -2,10 +2,11 @@
 *
 
 # But not these files and directories
-!bin/scripts/**/*
-!iterm2/**/*
-!karabiner/**/*
-!nvim/**/*
-!tmux/**/*
-!zsh/**/*
+!bin/scripts/*
+!iterm2/*
+!karabiner/*
+!alacritty/*
+!nvim/*
+!tmux/*
+!zsh/*
 !README.md

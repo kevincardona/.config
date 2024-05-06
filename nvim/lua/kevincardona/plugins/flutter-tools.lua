@@ -1,8 +1,9 @@
-vim.keymap.set('n', 'fld', ":FlutterVisualDebug<CR>")
-vim.keymap.set('n', 'flr', ":FlutterRun<CR>")
-vim.keymap.set('n', 'flq', ":FlutterQuit<CR>")
-vim.keymap.set('n', 'flf', ":FlutterLspRestart<CR>")
-vim.keymap.set('n', 'flo', ":FlutterOutlineToggle<CR>")
+vim.keymap.set('n', '<leader>fld', ":FlutterVisualDebug<CR>")
+vim.keymap.set('n', '<leader>fls', ":FlutterRun<CR>")
+vim.keymap.set('n', '<leader>flr', ":FlutterReload<CR>")
+vim.keymap.set('n', '<leader>flq', ":FlutterQuit<CR>")
+vim.keymap.set('n', '<leader>flf', ":FlutterLspRestart<CR>")
+vim.keymap.set('n', '<leader>flo', ":FlutterOutlineToggle<CR>")
 
 return {
     'akinsho/flutter-tools.nvim',

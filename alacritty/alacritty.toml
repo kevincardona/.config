@@ -1,0 +1,30 @@
+[window]
+decorations = 'Buttonless'
+
+[font]
+normal = { family = 'Hack Nerd Font', style = 'Regular' }
+bold = { family = 'Hack Nerd Font', style = 'Bold' }
+italic = { family = 'Hack Nerd Font', style = 'Italic' }
+bold_italic = { family = 'Hack Nerd Font', style = 'Bold Italic' }
+size = 14
+
+[keyboard]
+bindings = [
+  { key = "W", mods = "Command", chars = "\u001b :bd\r" },
+  { key = "Return", mods = "Command", chars = "" },
+  { key = "C", mods = "Command", chars = "y" },
+  { key = "T", mods = "Command", chars = "" },
+  { key = "Slash", mods = "Command", chars = "gcc" },
+  { key = "a", mods = "Command", chars = "\u001bggVGG" },
+  { key = "F", mods = "Command", chars = "\u001b sb" },
+  { key = "S", mods = "Command", chars = "\u001b :w\r" },
+  { key = "J", mods = "Command", chars = "\u0002z" },
+  { key = "p", mods = "Command", chars = "\u001b pf" },
+  { key = "E", mods = "Command|Shift", chars = "\u001b e" },
+  { key = "F", mods = "Command|Shift", chars = "\u001b ps" }
+]
+
+[shell]
+program = "/bin/zsh"
+args = ["-l", "-c", "/opt/homebrew/bin/tmux attach || /opt/homebrew/bin/tmux"]
+

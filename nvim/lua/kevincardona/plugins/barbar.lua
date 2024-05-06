@@ -8,7 +8,7 @@ return {
     init = function() vim.g.barbar_auto_setup = false end,
     opts = {
         icons = {
-            buffer_number = true,
+            buffer_number = false,
         }
     },
     version = '^1.0.0',
