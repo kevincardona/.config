@@ -29,13 +29,3 @@ bindings = [
 program = "/bin/zsh"
 args = ["-l", "-c", "/opt/homebrew/bin/tmux attach || /opt/homebrew/bin/tmux"]
 
-[hints]
-[[hints.enabled]]
-regex = '''(mailto:|gemini:|gopher:|https?:\/\/|http?:\/\/|news:|file:|git:|ssh:|ftp:)[^\s]+'''
-command = "open"
-post_processing = true
-
-[hints.enabled.mouse]
-enabled = true
-mods = "Option"
-
