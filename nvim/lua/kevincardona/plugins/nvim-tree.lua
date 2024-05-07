@@ -9,9 +9,8 @@ return {
                 local function opts(desc)
                     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
                 end
-                -- api.config.mappings.default_on_attach(bufnr)
-                -- vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
-                vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
+                vim.g.nvim_tree_auto_close = 1
+
                 vim.keymap.set('n', '<C-r>', api.fs.rename_sub, opts('Rename: Omit Filename'))
                 vim.keymap.set('n', '<BS>', api.node.navigate.parent_close, opts('Close Directory'))
                 vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))

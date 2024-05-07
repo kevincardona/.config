@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# Define function to list tmuxinator projects
+list_tmuxinator_projects() {
+    tmuxinator list | tail -n +2 | tr ' ' '\n' | awk 'NF'
+}
+
+# Select project using FZF or command-line argument
+if [[ $# -eq 1 ]]; then
+    selected="$1"
+else
+    selected=$(list_tmuxinator_projects | fzf --prompt='Select tmuxinator project: ')
+fi
+
+# Exit if no project is selected
+if [[ -z "$selected" ]]; then
+    exit 0
+fi
+
+# Properly handle project names with spaces
+session_name="$(echo "$selected" | sed 's/[^a-zA-Z0-9_-]/_/g')"
+
+# Determine if the tmux session is already running
+tmux_running=$(pgrep tmux)
+
+# Start or stop tmuxinator project based on session existence
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    # If not inside tmux and tmux is not running, start tmux and tmuxinator
+    tmuxinator start "$selected"
+    exit 0
+fi
+
+# Check if the session already exists
+if ! tmux has-session -t="$session_name" 2> /dev/null; then
+    # Start the tmuxinator project in a detached session if it doesn't exist
+    tmuxinator start "$selected"
+else
+    # If session exists, determine whether to stop or attach
+    if [[ $(tmux display-message -p -t="$session_name" '#{session_attached}') -eq 0 ]]; then
+        # Attach if session is not attached
+        tmux switch-client -t "$session_name"
+    else
+        # Stop the session if it is already attached
+        tmuxinator stop "$selected"
+        echo "Stopped $selected"
+    fi
+fi
+

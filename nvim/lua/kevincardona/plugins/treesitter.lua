@@ -64,6 +64,8 @@ return {
               ["ic"] = "@conditional.inner",
               ["ab"] = "@block.outer",
               ["ib"] = "@block.inner",
+              ["a/"] = "@comment.outer",
+              ["i/"] = "@comment.inner",
             },
           },
           move = {

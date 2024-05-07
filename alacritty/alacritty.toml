@@ -11,6 +11,8 @@ size = 14
 [keyboard]
 bindings = [
   { key = "Return", mods = "Command", chars = "" },
+  { key = "L", mods = "Command|Shift", chars = "\u001b :BufferNext\r" },
+  { key = "H", mods = "Command|Shift", chars = "\u001b :BufferPrevious\r" },
   { key = "N", mods = "Command", chars = "" },
   { key = "T", mods = "Command", chars = "" },
   { key = "W", mods = "Command", chars = "\u001b :bd\r" },
@@ -27,5 +29,5 @@ bindings = [
 
 [shell]
 program = "/bin/zsh"
-args = ["-l", "-c", "/opt/homebrew/bin/tmux attach || /opt/homebrew/bin/tmux"]
+args = ["-l", "-c", "/opt/homebrew/bin/tmux attach || /opt/homebrew/bin/tmux && /bin/zsh"]
 

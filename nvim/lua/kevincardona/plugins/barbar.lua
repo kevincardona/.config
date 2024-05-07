@@ -17,11 +17,11 @@ return {
         vim.keymap.set('n', '<leader>nn', ':BufferNext<CR>', { noremap = true, silent = true })
         vim.keymap.set('n', '<leader>k', ':BufferNext<CR>', { noremap = true, silent = true })
         vim.keymap.set('n', '<leader>l', ':BufferNext<CR>', { noremap = true, silent = true })
-        vim.keymap.set('n', 'L', ':BufferNext<CR>', { noremap = true, silent = true })
         vim.keymap.set('n', '<leader>bb', ':BufferPrevious<CR>', { noremap = true, silent = true })
         vim.keymap.set('n', '<leader>pp', ':BufferPrevious<CR>', { noremap = true, silent = true })
         vim.keymap.set('n', '<leader>j', ':BufferPrevious<CR>', { noremap = true, silent = true })
         vim.keymap.set('n', '<leader>h', ':BufferPrevious<CR>', { noremap = true, silent = true })
-        vim.keymap.set('n', 'H', ':BufferPrevious<CR>', { noremap = true, silent = true })
+        -- vim.keymap.set('n', 'L', ':BufferNext<CR>', { noremap = true, silent = true })
+        -- vim.keymap.set('n', 'H', ':BufferPrevious<CR>', { noremap = true, silent = true })
     end
 }
