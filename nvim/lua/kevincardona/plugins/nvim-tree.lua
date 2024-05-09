@@ -4,11 +4,29 @@ return {
         "nvim-tree/nvim-tree.lua",
         dependencies = "nvim-tree/nvim-web-devicons",
         config = function()
+            local function focus_next_buffer_if_nvim_tree()
+                local bufnr = vim.api.nvim_get_current_buf()
+                if vim.bo[bufnr].filetype == 'NvimTree' then
+                    vim.cmd('wincmd l')
+                end
+            end
+
             local function my_on_attach(bufnr)
                 local api = require "nvim-tree.api"
                 local function opts(desc)
                     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
                 end
+
+                vim.keymap.set('n', '<C-o>', function()
+                    focus_next_buffer_if_nvim_tree()
+                    vim.cmd('normal! <C-o>')
+                end, opts('Conditional Jump Back'))
+
+                vim.keymap.set('n', '<C-i>', function()
+                    focus_next_buffer_if_nvim_tree()
+                    vim.cmd('normal! <C-i>')
+                end, opts('Conditional Jump Forward'))
+
                 vim.g.nvim_tree_auto_close = 1
 
                 vim.keymap.set('n', '<C-r>', api.fs.rename_sub, opts('Rename: Omit Filename'))
@@ -36,7 +54,6 @@ return {
                 vim.keymap.set('n', 'gy', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
                 vim.keymap.set('n', 'ge', api.fs.copy.basename, opts('Copy Basename'))
                 vim.keymap.set('n', 'm', api.marks.toggle, opts('Toggle Bookmark'))
-                vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
                 vim.keymap.set('n', 'O', api.node.open.no_window_picker, opts('Open: No Window Picker'))
                 vim.keymap.set('n', 'p', api.fs.paste, opts('Paste'))
                 vim.keymap.set('n', 'P', api.node.navigate.parent, opts('Parent Directory'))
@@ -52,7 +69,7 @@ return {
                 vim.keymap.set('n', 'Y', api.fs.copy.relative_path, opts('Copy Relative Path'))
                 vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
                 vim.keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node, opts('CD'))
-                vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
+                vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
             end
 
             require("nvim-tree").setup({
@@ -61,7 +78,7 @@ return {
                     sorter = "case_sensitive",
                 },
                 view = {
-                    width = 30,
+                    width = 30
                 },
                 renderer = {
                     group_empty = true,
@@ -83,15 +100,15 @@ return {
                 },
             })
 
-            -- vim.api.nvim_create_autocmd("VimEnter", {
-            --     callback = function()
-            --         if #vim.fn.argv() == 0 and vim.fn.argc() == 0 then
-            --             vim.defer_fn(function()
-            --                 require('nvim-tree.api').tree.open()
-            --             end, 100)
-            --         end
-            --     end
-            -- })
+            vim.api.nvim_create_autocmd("VimEnter", {
+                callback = function()
+                    if #vim.fn.argv() == 0 and vim.fn.argc() == 0 then
+                        vim.defer_fn(function()
+                            require('nvim-tree.api').tree.open()
+                        end, 15)
+                    end
+                end
+            })
         end
     }
 }
