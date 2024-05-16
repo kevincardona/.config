@@ -99,16 +99,6 @@ return {
                     change_dir = { enable = false }
                 },
             })
-
-            vim.api.nvim_create_autocmd("VimEnter", {
-                callback = function()
-                    if #vim.fn.argv() == 0 and vim.fn.argc() == 0 then
-                        vim.defer_fn(function()
-                            require('nvim-tree.api').tree.open()
-                        end, 15)
-                    end
-                end
-            })
         end
     }
 }
