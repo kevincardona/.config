@@ -7,6 +7,7 @@ and some random things to go along with it while we're at it:
 * [karabiner elements](https://karabiner-elements.pqrs.org)
 * [oh my zsh](https://ohmyz.sh)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+* [zsh-completions](https://github.com/zsh-users/zsh-completions)
 * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 * [neovim](https://github.com/neovim/neovim)
 * [ripgrep](https://github.com/BurntSushi/ripgrep) 
