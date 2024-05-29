@@ -12,6 +12,17 @@ return {
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
         vim.keymap.set("n", "<leader>gb", ":GBrowse<CR>");
 
+        local function open_merge_request()
+            local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD"):gsub("\n", "")
+            local repo = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
+            repo = repo:gsub("git@%w+%.%w+:", ""):gsub("https?://%w+%.%w+/", ""):gsub("%.git$", "")
+            local domain = vim.g.fugitive_gitlab_domains["gitlab.vailsys.com"]
+            local encoded_branch = vim.fn.system("echo " .. branch .. " | jq -sRr @uri"):gsub("\n", ""):gsub("%%0A", "")
+            local url = repo .. "/-/merge_requests?scope=all&state=opened&source_branch=" .. encoded_branch
+            vim.fn.system({ "open", url })
+        end
+        vim.keymap.set("n", "<leader>gm", open_merge_request, { desc = "Open Merge Request" })
+
         local kevin_fugitive = vim.api.nvim_create_augroup("kevin_fugitive", {})
         local autocmd = vim.api.nvim_create_autocmd
         autocmd("BufWinEnter", {
