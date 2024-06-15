@@ -136,6 +136,7 @@ alias log-au-test='stern --context au-test'
 alias del='trash'
 alias spt='spotify_player'
 alias bers="bundle exec rails s"
+alias beks="bundle exec karafka s"
 alias lg="lazygit"
 alias dl="trash"
 

@@ -49,7 +49,15 @@ function StopRedoclyPreview()
   end
 end
 
+function LintRedocly()
+  local file_path = vim.api.nvim_buf_get_name(0)
+  local redocly_command = string.format("redocly lint %s", file_path)
+  local output = vim.fn.systemlist(redocly_command)
+  print(table.concat(output, "\n"))
+end
+
 vim.api.nvim_set_keymap('n', '<leader>sp', ":lua StartRedoclyPreview()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ss', ":lua StopRedoclyPreview()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sl', ":lua LintRedocly()<CR>", { noremap = true, silent = true })
 
 return {}

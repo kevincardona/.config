@@ -54,6 +54,48 @@ for _, map in ipairs(ci_commands) do
     vim.api.nvim_set_keymap('n', map, '"_' .. map, { noremap = true })
 end
 
+-- Function to visually select a method/function in normal mode
+local function select_method_visual()
+  vim.cmd('normal! v[m]m')
+end
+
+-- Function to visually select a method/function in line mode
+local function select_method_line_visual()
+  vim.cmd('normal! V[m]m')
+end
+
+-- Function to delete inside a method/function
+local function delete_method_inside()
+  vim.cmd('normal! [m]md')
+end
+
+-- Function to delete around a method/function
+local function delete_method_around()
+  vim.cmd('normal! [m]md]m')
+end
+
+-- Function to yank inside a method/function
+local function yank_method_inside()
+  vim.cmd('normal! [m]my')
+end
+
+-- Function to yank around a method/function
+local function yank_method_around()
+  vim.cmd('normal! [m]my]m')
+end
+
+-- Map the functions to keys
+vim.api.nvim_set_keymap('n', '<Leader>vim', ':lua select_method_visual()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>vam', ':lua select_method_line_visual()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>dim', ':lua delete_method_inside()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>dam', ':lua delete_method_around()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>yim', ':lua yank_method_inside()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>yam', ':lua yank_method_around()<CR>', { noremap = true, silent = true })
+
+-- buffer management
+vim.api.nvim_set_keymap('n', '<leader>bo', ':BufferCloseAllButCurrent<CR>', { noremap = true, silent = true })
+
+
 -- setup lsp keymaps only when an lsp client attaches to a buffer
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(e)

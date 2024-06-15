@@ -46,5 +46,7 @@ return {
 
         vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>")
         vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>")
+        vim.api.nvim_set_keymap('n', '<leader>mp', ":MarkdownPreview<CR>", { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('n', '<leader>ms', ":MarkdownPreviewStop<CR>", { noremap = true, silent = true })
     end
 }
