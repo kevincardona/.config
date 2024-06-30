@@ -2,6 +2,9 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("i", "jj", "<Esc>", opts)
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+-- Disable Ctrl + U in insert mode
+vim.api.nvim_set_keymap('i', '<C-u>', '<NOP>', { noremap = true, silent = true })
+
 -- lsp
 vim.keymap.set('n', '<leader>t', ":TroubleToggle<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>tq', ":TroubleToggle quickfix<CR>", { noremap = true, silent = true })
